@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">FoodLogger</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <!-- diary fragment:-->
+    <string name="diary_fragment_message"> Diary Fragment </string>
+    <string name="diary_fragment_icon_name"> Diary </string>
+    <string name="add_breakfast_button_name"> Breakfast </string>
+    <string name="add_lunch_button_name"> Lunch </string>
+    <string name="add_dinner_button_name"> Dinner </string>
+    <string name="add_other_button_name"> Other </string>
+
+    <!-- stats fragment:-->
+    <string name="stats_fragment_message"> Stats Fragment </string>
+    <string name="stats_fragment_icon_name"> Stats</string>
+    <!-- user fragment:-->
+    <string name="user_fragment_message"> User Fragment </string>
+    <string name="user_fragment_icon_name"> Me </string>
+
+
+    <!-- database -->
+    <string name="database_name"> foodlogger.db </string>
+</resources>

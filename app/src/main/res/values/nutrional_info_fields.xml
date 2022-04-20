@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="nutritional_info_fields" >
+        <item>kCal</item>
+        <item>Carbohydrates</item>
+        <item>Protein</item>
+        <item>Fat</item>
+        <item>Saturated Fat</item>
+        <item>Polyunsaturated Fat</item>
+        <item>Monounsaturated Fat</item>
+        <item>Trans Fat</item>
+        <item>Cholesterol</item>
+        <item>Sodium</item>
+        <item>Potassium</item>
+        <item>Fiber</item>
+        <item>Sugars</item>
+        <item>Vitamin A</item>
+        <item>Vitamin C</item>
+        <item>Calcium</item>
+        <item>Iron</item>
+    </string-array>
+</resources>
