@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //called on the first access to the database.
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        String create
     }
 
     //called when the database version number changes.
@@ -29,40 +29,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //TODO: User functions
 
-    //Food
-    public void addFood(){
-
-    }
-
-    public FoodModel getFood(){
-
-    }
-
-    public void updateFood(){
-
-    }
-
-    public void deleteFood(){
-
-    }
-
-    //Meal
-    public void addMeal(){
-
-    }
-
-    public MealModel getMeal(){
-
-    }
-
-    public void updateMeal(){
-
-    }
-
-    public void deleteMeal(){
-
-    }
-
-    //
-    public void
 }
