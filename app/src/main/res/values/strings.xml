@@ -11,9 +11,9 @@
     <string name="add_dinner_button_name"> Dinner </string>
     <string name="add_other_button_name"> Other </string>
 
-    <!-- stats fragment:-->
-    <string name="stats_fragment_message"> Stats Fragment </string>
-    <string name="stats_fragment_icon_name"> Stats</string>
+    <!-- meals fragment:-->
+    <string name="meals_fragment_message"> Meals Fragment </string>
+    <string name="meals_fragment_icon_name"> Meals</string>
     <!-- user fragment:-->
     <string name="user_fragment_message"> User Fragment </string>
     <string name="user_fragment_icon_name"> Me </string>
@@ -21,4 +21,6 @@
 
     <!-- database -->
     <string name="database_name"> foodlogger.db </string>
+    <string name="pick_date">Set Date</string>
+    <string name="diary_fragment_date_text_view"> Select Date </string>
 </resources>

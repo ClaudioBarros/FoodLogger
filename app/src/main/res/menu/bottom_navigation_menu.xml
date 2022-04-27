@@ -7,9 +7,9 @@
         android:icon="@drawable/ic_baseline_restaurant_24" />
 
     <item
-        android:id="@+id/statsFragment"
-        android:title="@string/stats_fragment_icon_name"
-        android:icon="@drawable/ic_baseline_pie_chart_24"/>
+        android:id="@+id/mealsFragment"
+        android:title="@string/meals_fragment_icon_name"
+        android:icon="@drawable/ic_baseline_set_meal_24"/>
 
     <item
         android:id="@+id/userFragment"

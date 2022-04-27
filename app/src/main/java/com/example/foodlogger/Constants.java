@@ -25,4 +25,11 @@ public final class Constants {
             "Calcium",
             "Iron",
     };
+
+    public static class MealTypes{
+        public static final String MEAL_TYPE_BREAKFAST = "Breakfast";
+        public static final String MEAL_TYPE_LUNCH = "Lunch";
+        public static final String MEAL_TYPE_DINNER = "Dinner";
+        public static final String MEAL_TYPE_OTHER = "Other";
+    }
 }

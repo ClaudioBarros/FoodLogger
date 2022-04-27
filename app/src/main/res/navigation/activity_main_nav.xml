@@ -11,10 +11,10 @@
         android:label="fragment_diary"
         tools:layout="@layout/fragment_diary" />
     <fragment
-        android:id="@+id/statsFragment"
-        android:name="com.example.foodlogger.StatsFragment"
+        android:id="@+id/mealsFragment"
+        android:name="com.example.foodlogger.MealsFragment"
         android:label="fragment_stats"
-        tools:layout="@layout/fragment_stats" />
+        tools:layout="@layout/fragment_meals" />
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.foodlogger.userFragment"
