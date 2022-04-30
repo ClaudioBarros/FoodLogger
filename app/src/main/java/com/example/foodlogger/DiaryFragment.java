@@ -1,5 +1,6 @@
 package com.example.foodlogger;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -11,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.time.LocalDate;
@@ -30,10 +33,15 @@ public class DiaryFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     // TODO: Rename and change types of parameters
 
-    private MainViewModel mModel;
+    GlobalData globalData;
+    DatabaseHelper dbHelper;
 
     //Layout Elements
     //Button setDateButton;
+    FoodEntryAdapter mAdapter;
+    ListView foodEntryListView;
+
+
 
     private String mParam1;
     private String mParam2;
@@ -69,14 +77,22 @@ public class DiaryFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        mModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        mModel.mCurrentSelectedDate = LocalDate.now();
+        globalData = GlobalData.getInstance();
+        globalData.mCurrentSelectedDate = LocalDate.now();
+    }
+
+    private void displayListOfFoodEntries(View view){
+        mAdapter = new FoodEntryAdapter(requireContext(), globalData.mFoodEntryList);
+        foodEntryListView = (ListView) view.findViewById(R.id.foodEntryListView);
+        foodEntryListView.setAdapter(mAdapter);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        dbHelper = new DatabaseHelper(requireContext());
 
         //initialize setDateButton
         View view = inflater.inflate(R.layout.fragment_diary, container, false);
@@ -92,8 +108,33 @@ public class DiaryFragment extends Fragment {
         TextView selectedDateTextView = (TextView) view.findViewById(R.id.selected_date_text_view);
         if(selectedDateTextView != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-            selectedDateTextView.setText(mModel.mCurrentSelectedDate.format(formatter));
+            selectedDateTextView.setText(globalData.mCurrentSelectedDate.format(formatter));
         }
+
+        //initialize add food button
+        Button addFoodButton = (Button) view.findViewById(R.id.addFoodButton);
+        addFoodButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                //start FoodSelect activity
+                Intent intent = new Intent(view.getContext(), FoodSelectActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        globalData.mFoodEntryList = dbHelper.queryFoodEntriesByDate(globalData.mCurrentSelectedDate.toString());
+
+        displayListOfFoodEntries(view);
+
+        foodEntryListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                globalData.mDiarySelectedFoodEntry = (FoodEntryModel) adapterView.getItemAtPosition(i);
+
+                Intent intent = new Intent(requireContext(), UpdateOrDeleteFoodEntryActivity.class);
+                //based on item add info to intent
+                startActivity(intent);
+            }
+        });
 
         return view;
         // Inflate the layout for this fragment

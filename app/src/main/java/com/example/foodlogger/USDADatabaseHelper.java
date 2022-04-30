@@ -34,6 +34,11 @@ public class USDADatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        try {
+            this.createDatabase();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
     @Override

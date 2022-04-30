@@ -4,9 +4,9 @@ import android.provider.BaseColumns;
 
 import java.util.Map;
 
-public class DatabaseContract {
+public class DbContract {
 
-    private DatabaseContract(){
+    private DbContract(){
        //restrict instantiation
     }
 
@@ -22,7 +22,7 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_FAT_GOAL= "fat_goal";
 
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE" + UserData.TABLE_NAME + " (" +
+                "CREATE TABLE " + UserData.TABLE_NAME + " (" +
                 UserData._ID + " INTEGER PRIMARY KEY," +
                 UserData.COLUMN_NAME_HEIGHT + " REAL," +
                 UserData.COLUMN_NAME_NAME+ " TEXT," +
@@ -31,7 +31,7 @@ public class DatabaseContract {
                 UserData.COLUMN_NAME_CARB_GOAL + " INTEGER," +
                 UserData.COLUMN_NAME_FAT_GOAL + " INTEGER)";
 
-        private static final String SQL_DELETE_TABLE =
+        public static final String SQL_DELETE_TABLE =
                 "DROP TABLE IF EXISTS " + UserData.TABLE_NAME;
     }
 
@@ -54,7 +54,7 @@ public class DatabaseContract {
                 "FOREIGN KEY(" + User_Weight.COLUMN_NAME_USER_ID + ") REFERENCES " +
                         UserData.TABLE_NAME + "(" + UserData._ID + ")" + ")";
 
-        private static final String SQL_DELETE_TABLE =
+        public static final String SQL_DELETE_TABLE =
                 "DROP TABLE IF EXISTS " + User_Weight.TABLE_NAME;
     }
 
@@ -77,7 +77,7 @@ public class DatabaseContract {
                 Food.COLUMN_NAME_SRC_DB_ID + " INTEGER NOT NULL," +
                 Food.COLUMN_NAME_DATABASE_TAG + " TEXT NOT NULL)";
 
-        private static final String SQL_DELETE_TABLE =
+        public static final String SQL_DELETE_TABLE =
                 "DROP TABLE IF EXISTS " + Food.TABLE_NAME;
     }
 
@@ -86,17 +86,19 @@ public class DatabaseContract {
 
         //public static final String COLUMN_NAME_ID = "id";
         public static final String COLUMN_NAME_NAME = "name";
+        public static final String COLUMN_NAME_TAGNAME = "tagname";
         public static final String COLUMN_NAME_UNIT = "unit";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
 
         public static final String SQL_CREATE_TABLE =
                 "CREATE TABLE " + TABLE_NAME + " (" +
-                Nutrient._ID + " INTEGER_PRIMARY_KEY," +
-                Nutrient.COLUMN_NAME_NAME + " TEXT," +
-                Nutrient.COLUMN_NAME_UNIT + " TEXT," +
+                Nutrient._ID + " INTEGER PRIMARY KEY," +
+                Nutrient.COLUMN_NAME_NAME + " TEXT NOT NULL," +
+                Nutrient.COLUMN_NAME_TAGNAME + " TEXT," +
+                Nutrient.COLUMN_NAME_UNIT + " TEXT NOT NULL," +
                 Nutrient.COLUMN_NAME_DESCRIPTION + " TEXT)";
 
-        private static final String SQL_DELETE_TABLE =
+        public static final String SQL_DELETE_TABLE =
                 "DROP TABLE IF EXISTS " + Nutrient.TABLE_NAME;
     }
 
@@ -105,23 +107,17 @@ public class DatabaseContract {
 
         //public static final String COLUMN_NAME_ID = "id";
         public static final String COLUMN_NAME_FOOD_ID = "food_id";
-        public static final String COLUMN_NAME_PORTION_ID = "portion_id";
-        public static final String COLUMN_NAME_PORTION_AMOUNT = "portion_amount";
         public static final String COLUMN_NAME_DATE = "date";
-        public static final String COLUMN_NAME_MEAL_TYPE = "meal_type";
-        public static final String COLUMN_NAME_DESCRIPTION = "description";
+        public static final String COLUMN_NAME_WEIGHT = "weight"; //grams
 
         public static final String SQL_CREATE_TABLE =
                 "CREATE TABLE " + TABLE_NAME + " (" +
                 FoodEntry._ID + " INTEGER PRIMARY KEY," +
-                FoodEntry.COLUMN_NAME_FOOD_ID + " INTEGER," +
-                FoodEntry.COLUMN_NAME_PORTION_ID + " INTEGER," +
-                FoodEntry.COLUMN_NAME_PORTION_AMOUNT + " REAL," +
-                FoodEntry.COLUMN_NAME_DATE + " TEXT," +
-                FoodEntry.COLUMN_NAME_MEAL_TYPE + " TEXT," +
-                FoodEntry.COLUMN_NAME_DESCRIPTION + " TEXT)";
+                FoodEntry.COLUMN_NAME_FOOD_ID + " INTEGER NOT NULL," +
+                FoodEntry.COLUMN_NAME_DATE + " TEXT NOT NULL," +
+                FoodEntry.COLUMN_NAME_WEIGHT + " REAL NOT NULL)";
 
-        private static final String SQL_DELETE_TABLE =
+        public static final String SQL_DELETE_TABLE =
                 "DROP TABLE IF EXISTS " + FoodEntry.TABLE_NAME;
     }
 
@@ -135,10 +131,10 @@ public class DatabaseContract {
         public static final String SQL_CREATE_TABLE =
                 "CREATE TABLE " + TABLE_NAME + " (" +
                 Meal._ID+ " INTEGER PRIMARY KEY," +
-                Meal.COLUMN_NAME_NAME+ " TEXT," +
+                Meal.COLUMN_NAME_NAME+ " TEXT NOT NULL," +
                 Meal.COLUMN_NAME_DESCRIPTION + " TEXT)";
 
-        private static final String SQL_DELETE_TABLE =
+        public static final String SQL_DELETE_TABLE =
                 "DROP TABLE IF EXISTS " + Meal.TABLE_NAME;
     }
 
@@ -157,11 +153,11 @@ public class DatabaseContract {
                 Portion.COLUMN_NAME_FOOD_ID + " INTEGER NOT NULL," +
                 Portion.COLUMN_NAME_AMOUNT+ " REAL NOT NULL," +
                 Portion.COLUMN_NAME_DESCRIPTION + " TEXT NOT NULL," +
-                Portion.COLUMN_NAME_GRAMS + " REAL NOT NULL)" +
+                Portion.COLUMN_NAME_GRAMS + " REAL NOT NULL, " +
                 "FOREIGN KEY(" + Portion.COLUMN_NAME_FOOD_ID + ") REFERENCES " +
                     Food.TABLE_NAME + "(" + Food._ID + ")" + ")";
 
-        private static final String SQL_DELETE_TABLE =
+        public static final String SQL_DELETE_TABLE =
                 "DROP TABLE IF EXISTS " + Portion.TABLE_NAME;
     }
 
@@ -182,7 +178,7 @@ public class DatabaseContract {
                 "FOREIGN KEY(" + Food_Nutrient.COLUMN_NAME_NUTRIENT_ID + ") REFERENCES " +
                     Nutrient.TABLE_NAME + "(" + Nutrient._ID + ")" + ")";
 
-        private static final String SQL_DELETE_TABLE =
+        public static final String SQL_DELETE_TABLE =
                 "DROP TABLE IF EXISTS " + Food_Nutrient.TABLE_NAME;
     }
 
@@ -197,10 +193,10 @@ public class DatabaseContract {
 
         public static final String SQL_CREATE_TABLE =
                 "CREATE TABLE " + Meal_Food.TABLE_NAME + " (" +
-                        Meal_Food.COLUMN_NAME_MEAL_ID + " INTEGER," +
-                        Meal_Food.COLUMN_NAME_FOOD_ID + " INTEGER," +
-                        Meal_Food.COLUMN_NAME_PORTION_ID + " INTEGER," +
-                        Meal_Food.COLUMN_NAME_PORTION_AMOUNT + " INTEGER," +
+                        Meal_Food.COLUMN_NAME_MEAL_ID + " INTEGER NOT NULL," +
+                        Meal_Food.COLUMN_NAME_FOOD_ID + " INTEGER NOT NULL," +
+                        Meal_Food.COLUMN_NAME_PORTION_ID + " INTEGER NOT NULL," +
+                        Meal_Food.COLUMN_NAME_PORTION_AMOUNT + " INTEGER NOT NULL," +
                         "FOREIGN KEY(" + Meal_Food.COLUMN_NAME_MEAL_ID + ") REFERENCES " +
                             Meal.TABLE_NAME + "(" + Meal._ID + ")" + "," +
                         "FOREIGN KEY(" + Meal_Food.COLUMN_NAME_FOOD_ID + ") REFERENCES " +
@@ -208,7 +204,7 @@ public class DatabaseContract {
                         "FOREIGN KEY(" + Meal_Food.COLUMN_NAME_PORTION_ID + ") REFERENCES " +
                             Portion.TABLE_NAME + "(" + Portion._ID + ")" + ")";
 
-        private static final String SQL_DELETE_TABLE =
+        public static final String SQL_DELETE_TABLE =
                 "DROP TABLE IF EXISTS " + Meal_Food.TABLE_NAME;
     }
 

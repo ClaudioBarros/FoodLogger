@@ -20,14 +20,14 @@ import java.util.Calendar;
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
-    private MainViewModel mModel;
-
+    GlobalData globalData;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        mModel.mCurrentSelectedDate = LocalDate.now();
+        //init global data
+        globalData = GlobalData.getInstance();
+        globalData.mCurrentSelectedDate = LocalDate.now();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -51,13 +51,12 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-        mModel.mCurrentSelectedDate = LocalDate.of(year, month, day);
-
+        globalData.mCurrentSelectedDate = LocalDate.of(year, month, day);
 
         TextView selectedDateTextView = (TextView) getActivity().findViewById(R.id.selected_date_text_view);
         if(selectedDateTextView != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-            selectedDateTextView.setText(mModel.mCurrentSelectedDate.format(formatter));
+            selectedDateTextView.setText(globalData.mCurrentSelectedDate.format(formatter));
         }
     }
 }

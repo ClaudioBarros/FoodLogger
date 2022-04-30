@@ -5,12 +5,25 @@
       <map>
         <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.26" />
         <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/drawable/ic_baseline_restaurant_24.xml" value="0.26" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/activity_add_food_entry.xml" value="0.33" />
         <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/activity_display_message.xml" value="0.5" />
-        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/fragment_diary.xml" value="0.25" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/activity_food_select.xml" value="0.33" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/activity_search_food.xml" value="0.35054347826086957" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/activity_searchable.xml" value="0.22" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/activity_update_food.xml" value="0.20833333333333334" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/activity_update_or_delete_food_entry.xml" value="0.37083333333333335" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/content_search_food.xml" value="0.35054347826086957" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/fragment_diary.xml" value="0.33" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/fragment_first.xml" value="0.35054347826086957" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/fragment_food_select.xml" value="0.35054347826086957" />
         <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/fragment_meals.xml" value="0.37083333333333335" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/fragment_second.xml" value="0.35054347826086957" />
         <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/fragment_stats.xml" value="0.37083333333333335" />
         <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/fragment_user.xml" value="0.37083333333333335" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/item_food.xml" value="0.33" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/item_food_entry.xml" value="0.33" />
+        <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/layout/item_food_info.xml" value="0.33" />
         <entry key="..\:/Files/Projects/FoodLogger/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.37083333333333335" />
       </map>
     </option>

@@ -8,6 +8,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -17,10 +19,8 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    MainViewModel mModel;
-
-    USDADatabaseHelper mUSDADatabaseHelper;
-    DatabaseHelper mDatabaseHelper;
+    GlobalData globalData;
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +28,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //initialize main ViewModel class
-        mModel = new ViewModelProvider(this).get(MainViewModel.class);
+        globalData = GlobalData.getInstance();
 
-        //open USDA database
-        mUSDADatabaseHelper = new USDADatabaseHelper(this);
-        try {
-            mUSDADatabaseHelper.createDatabase();
-            mUSDADatabaseHelper.openDatabase();
-        } catch(IOException e){
-            e.printStackTrace();
-            throw new Error("Error initializing USDA database:" + e.toString());
+        dbHelper = new DatabaseHelper(this);
+
+        Cursor dbCursor = dbHelper.selectAllFromFoodTable();
+        //if database is empty, initialize data from USDA database
+        if(dbCursor.getCount() == 0){
+            //open USDA database
+            USDADatabaseHelper USDADatabaseHelper = new USDADatabaseHelper(this);
+            try {
+                USDADatabaseHelper.createDatabase();
+                USDADatabaseHelper.openDatabase();
+            } catch(IOException e){
+                e.printStackTrace();
+                throw new Error("Error initializing USDA database:" + e.toString());
+            }
+            dbHelper.initializeFromUSDAData(USDADatabaseHelper);
+
+            USDADatabaseHelper.close();
         }
-
-        //open app database and initialize with USDA data
-        mDatabaseHelper = new DatabaseHelper(this);
-        mDatabaseHelper.initializeFromUSDAData(mUSDADatabaseHelper);
     }
 
     @Override

@@ -10,6 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodLogger">
         <activity
+            android:name=".UpdateFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateOrDeleteFoodEntryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddFoodEntryActivity"
+            android:exported="false" />
+        <!--
+         this activity enables the search dialog to initiate searches
+         in the SearchableActivity
+        -->
+        <activity
+            android:name=".FoodSelectActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
